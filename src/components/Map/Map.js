@@ -1,22 +1,18 @@
-import React from 'react';
-import {
-    withScriptjs,
-    withGoogleMap,
-    GoogleMap,
-    Marker,
-} from "react-google-maps";
-import './Map.css';
+import React, { Component } from 'react';
+// import shouldPureComponentUpdate from 'react-pure-render/function';
 
+import GoogleMap from 'google-map-react';
+import { GOOGLE_MAP_API_KEY } from '../../config'
 
-const Map = withScriptjs(withGoogleMap(props =>
-    <GoogleMap
-        defaultZoom={8}
-        defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    >
-        <Marker
-            position={{ lat: -34.397, lng: 150.644 }}
-        />
-    </GoogleMap>
-));
+export default class Map extends Component {
 
-export default Map;
+    render() {
+        return (
+            <GoogleMap
+                apiKey={GOOGLE_MAP_API_KEY} // set if you need stats etc ...
+                center={[59.938043, 30.337157]}
+                zoom={9}>
+            </GoogleMap>
+        );
+    }
+}
