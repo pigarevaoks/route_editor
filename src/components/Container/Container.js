@@ -4,7 +4,7 @@ import * as routeEditorActions from '../../actions/routeEditorActions';
 // import PropTypes from 'prop-types';
 import React from 'react';
 import './Container.css';
-import Input from '../Input/Input';
+import SearchBox from '../SearchBox/SearchBox';
 import Map from '../Map/Map'
 import List from '../List/List'
 
@@ -13,15 +13,11 @@ class Container extends React.Component {
         return (
             <div className="container__inner">
                 <div className="container__col">
-                    <Input />
+                    <SearchBox />
                     <List deleted={this.props.deleted} onClick={() => this.props.deleteRoute()} />
                 </div>
                 <div className="container__col">
-                    <Map googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_rLJhfi9_xpVDYAG9awB7ZBJEeBZ64Mg&v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
-                        mapElement={<div style={{ height: `100%` }} />}
-                    />
+                    <Map />
                 </div>
             </div>
         )
