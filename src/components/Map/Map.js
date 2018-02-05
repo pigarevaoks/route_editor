@@ -6,7 +6,7 @@ export default class Map extends Component {
     render() {
         return (
             <GoogleMap
-                apiKey={GOOGLE_MAP_API_KEY} // set if you need stats etc ...
+                bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }} 
                 center={[59.938043, 30.337157]}
                 zoom={9}>
             </GoogleMap>

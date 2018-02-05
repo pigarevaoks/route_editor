@@ -6,16 +6,16 @@ export default class SearchBox extends React.Component {
 
     componentDidMount() {
         this.searchBox = new google.maps.places.SearchBox(this.textInput); 
-        this.searchBox.addListener('places_changed', this.onPlacesChanged);
     }
 
     componentWillUnmount() {
         google.maps.event.clearInstanceListeners(this.searchBox);
     }
 
-    onPlacesChanged = () => {
-        if (this.props.onPlacesChanged) {
-            this.props.onPlacesChanged(this.searchBox.getPlaces());
+    _handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            let getPlaces = new Promise(resolve => resolve(this.searchBox.getPlaces()))
+            getPlaces.then(places => this.props.addPoint(places[0]))
         }
     }
 
@@ -24,7 +24,7 @@ export default class SearchBox extends React.Component {
         return <input type="text"
                       className="search_box" 
                       ref={(input) => { this.textInput = input; }}  
-                      {...this.props} 
+                      onKeyPress={this._handleKeyPress} 
                 />;
     }
 }

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as routeEditorActions from '../../actions/routeEditorActions';
-// import PropTypes from 'prop-types';
 import React from 'react';
 import './Container.css';
 import SearchBox from '../SearchBox/SearchBox';
@@ -13,8 +12,11 @@ class Container extends React.Component {
         return (
             <div className="container__inner">
                 <div className="container__col">
-                    <SearchBox />
-                    <List deleted={this.props.deleted} onClick={() => this.props.deleteRoute()} />
+                    <SearchBox addPoint={this.props.addPoint}/>
+                    <List deleted={this.props.deleted}
+                            pointsList={this.props.pointsList}
+                            onClick={() => this.props.deleteRoute()} 
+                    />
                 </div>
                 <div className="container__col">
                     <Map />
@@ -24,20 +26,17 @@ class Container extends React.Component {
     }
 }
 
-// Container.propTypes = {
-//     stuffActions: PropTypes.object,
-//     stuff: PropTypes.array
-// };
-
 function mapStateToProps(state) {
     return {
-        deleted: state.routeEditor.deleted
+        deleted: state.routeEditor.deleted,
+        pointsList: state.routeEditor.points
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        deleteRoute: bindActionCreators(routeEditorActions.deleteRoute, dispatch)
+        deleteRoute: bindActionCreators(routeEditorActions.deleteRoute, dispatch),
+        addPoint: bindActionCreators(routeEditorActions.addPoint, dispatch)
     };
 }
 

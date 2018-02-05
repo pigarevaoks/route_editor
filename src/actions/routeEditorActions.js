@@ -1,7 +1,8 @@
 import * as allActions from './allActions';
 
-export const addPoint = () => ({
+export const addPoint = point => ({
     type: allActions.ADD_POINT,
+    payload: point
 });
 
 export const deleteRoute = () => ({
