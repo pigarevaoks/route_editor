@@ -10,6 +10,7 @@ export default class List extends React.Component {
             <div key={index} className="list_item">
                 <div className="list_item__address">
                     {item.icon ? <img src={item.icon} alt="" className="list_item__icon"/> : null}
+                    <span className="list_item__index">{index + 1}</span>
                     <span>{item.formatted_address}</span>
                 </div>
                 <div className="list_item__block">lat: {item.location.lat}</div>

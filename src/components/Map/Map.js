@@ -2,6 +2,8 @@ import React from 'react';
 import GoogleMap from 'google-map-react';
 import { GOOGLE_MAP_API_KEY } from '../../config'
 import Marker from '../Marker/Marker'
+import Polyline from '../Polyline/Polyline'
+import './Map.css';
 
 export default class Map extends React.Component {
 
@@ -17,12 +19,10 @@ export default class Map extends React.Component {
     _onMouseVertical = (childKey, childProps, mouse) => {
         this.setState({ draggable: false });
         this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng)
-        // console.log('_onMouseVertical', childKey, childProps, mouse);
     }
 
     _onMouseUp = (childKey, childProps, mouse) => {
         this.setState({ draggable: true });
-        // console.log('_onMouseUp', childKey, childProps, mouse);
     }
 
     _onChange = ({ center, zoom }) => {
@@ -41,18 +41,22 @@ export default class Map extends React.Component {
         ));
 
         return (
-            <GoogleMap
-                draggable={this.state.draggable}
-                onChange={this._onChange}
-                center={this.state.center}
-                zoom={this.state.zoom}
-                onChildMouseDown={this._onMouseVertical}
-                onChildMouseUp = {this._onMouseUp }
-                onChildMouseMove = {this._onMouseVertical}
-                bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-            >
-                {Markers}
-            </GoogleMap>
+            <div className="map" >
+                <GoogleMap
+                    draggable={this.state.draggable}
+                    onChange={this._onChange}
+                    center={this.state.center}
+                    zoom={this.state.zoom}
+                    onChildMouseDown={this._onMouseVertical}
+                    onChildMouseUp = {this._onMouseUp }
+                    onChildMouseMove = {this._onMouseVertical}
+                    bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
+                    onGoogleApiLoaded={({ map, maps }) => { this.setState({ map: map, maps: maps, mapLoaded: true }) }}
+                >
+                    {Markers}
+                </GoogleMap>
+                {this.state.mapLoaded && <Polyline pointsList={this.props.pointsList} map={this.state.map} maps={this.state.maps} />}
+            </div>
         );
     }
 }

@@ -1,6 +1,10 @@
 .list_item {
     margin-bottom: 15px;
 }
+.list_item__index {
+    margin-right: 10px;
+    color: red;
+}
 .list_item__address {
     display: flex;
     flex-direction: row;
