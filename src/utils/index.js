@@ -3,3 +3,18 @@ export const insertItem = (array, action) => {
     newArray.splice(newArray.length, 0, action.payload);
     return newArray;
 }
+
+export const updateItemInArray = (array, action) => {
+    return array.map((item, index) => {
+        if (index !== action.payload.key) {
+            return item;
+        }
+        return {
+            ...item,
+            location: {
+                lat: action.payload.lat,
+                lng: action.payload.lng
+            }
+        };
+    });
+}

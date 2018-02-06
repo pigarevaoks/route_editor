@@ -19,7 +19,8 @@ class Container extends React.Component {
                     />
                 </div>
                 <div className="container__col">
-                    <Map />
+                    <Map pointsList={this.props.pointsList}
+                         updatePoint={this.props.updatePoint} />
                 </div>
             </div>
         )
@@ -35,8 +36,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        deleteRoute: bindActionCreators(routeEditorActions.deleteRoute, dispatch),
-        addPoint: bindActionCreators(routeEditorActions.addPoint, dispatch)
+        addPoint: bindActionCreators(routeEditorActions.addPoint, dispatch),
+        updatePoint: bindActionCreators(routeEditorActions.updatePoint, dispatch),
+        deleteRoute: bindActionCreators(routeEditorActions.deleteRoute, dispatch)
     };
 }
 

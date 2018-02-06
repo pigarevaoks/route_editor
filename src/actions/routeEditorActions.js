@@ -5,6 +5,11 @@ export const addPoint = point => ({
     payload: point
 });
 
+export const updatePoint = (key, lat, lng) => ({
+    type: allActions.UPDATE_POINT,
+    payload: { key, lat, lng }
+});
+
 export const deleteRoute = () => ({
     type: allActions.DELETE_ROUTE,
 });

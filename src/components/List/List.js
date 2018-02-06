@@ -9,11 +9,11 @@ export default class List extends Component {
         return (
             <div key={index} className="list_item">
                 <div className="list_item__address">
-                    {item.icon ? <img src={item.icon} className="list_item__icon"/> : null}
+                    {item.icon ? <img src={item.icon} alt="" className="list_item__icon"/> : null}
                     <span>{item.formatted_address}</span>
                 </div>
-                <div className="list_item__block">lat: {item.geometry.location.lat()}</div>
-                <div className="list_item__block">lng: {item.geometry.location.lng()}</div>
+                <div className="list_item__block">lat: {item.location.lat}</div>
+                <div className="list_item__block">lng: {item.location.lng}</div>
                 <Button title='DELETE'
                     onClick={this.props.onClick}
                 />
