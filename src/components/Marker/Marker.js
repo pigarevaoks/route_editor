@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Marker.css';
 
-export default class Marker extends Component {
+export default class Marker extends React.Component {
     render() {
         return (
             <div className="marker">
-                {this.props.text}
+                <span>{this.props.text}</span>
             </div>
         );
     }

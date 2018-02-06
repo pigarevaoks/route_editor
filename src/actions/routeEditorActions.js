@@ -10,6 +10,7 @@ export const updatePoint = (key, lat, lng) => ({
     payload: { key, lat, lng }
 });
 
-export const deleteRoute = () => ({
-    type: allActions.DELETE_ROUTE,
+export const deletePoint = index => ({
+    type: allActions.DELETE_POINT,
+    payload: { index }
 });

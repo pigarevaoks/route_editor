@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GoogleMap from 'google-map-react';
 import { GOOGLE_MAP_API_KEY } from '../../config'
 import Marker from '../Marker/Marker'
 
-export default class Map extends Component {
+export default class Map extends React.Component {
 
     constructor(props) {
         super(props)
@@ -19,7 +19,7 @@ export default class Map extends Component {
         this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng)
         // console.log('_onMouseVertical', childKey, childProps, mouse);
     }
-    
+
     _onMouseUp = (childKey, childProps, mouse) => {
         this.setState({ draggable: true });
         // console.log('_onMouseUp', childKey, childProps, mouse);
@@ -33,7 +33,7 @@ export default class Map extends Component {
         const Markers = this.props.pointsList.map((marker, index) => (
             <Marker
                 key={index}
-                text={index}
+                text={index + 1}
                 marker={marker}
                 lng={marker.location.lng}
                 lat={marker.location.lat}

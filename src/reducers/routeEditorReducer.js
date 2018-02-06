@@ -1,6 +1,6 @@
 import initialState from './initialState';
-import { ADD_POINT, DELETE_ROUTE, UPDATE_POINT } from '../actions/allActions';
-import { insertItem, updateItemInArray } from '../utils'
+import { ADD_POINT, UPDATE_POINT, DELETE_POINT } from '../actions/allActions';
+import { insertItem, updateItemInArray, removeItem } from '../utils'
 
 export default function routeEditor(state = initialState, action) {
   switch (action.type) {
@@ -12,9 +12,9 @@ export default function routeEditor(state = initialState, action) {
       console.log('UPDATE_POINT Action')
       return { ...state, points: updateItemInArray(state.points, action) }
 
-    case DELETE_ROUTE:
-      console.log('DELETE_ROUTE Action')
-      return { ...state, deleted: true };
+    case DELETE_POINT:
+      console.log('DELETE_POINT Action')
+      return { ...state, points: removeItem(state.points, action) };
 
     default:
       return state;

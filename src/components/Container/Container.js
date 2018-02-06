@@ -1,7 +1,7 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as routeEditorActions from '../../actions/routeEditorActions';
-import React from 'react';
 import './Container.css';
 import SearchBox from '../SearchBox/SearchBox';
 import Map from '../Map/Map'
@@ -13,9 +13,8 @@ class Container extends React.Component {
             <div className="container__inner">
                 <div className="container__col">
                     <SearchBox addPoint={this.props.addPoint}/>
-                    <List deleted={this.props.deleted}
-                            pointsList={this.props.pointsList}
-                            onClick={() => this.props.deleteRoute()} 
+                    <List pointsList={this.props.pointsList}
+                          deletePoint={this.props.deletePoint} 
                     />
                 </div>
                 <div className="container__col">
@@ -38,7 +37,7 @@ function mapDispatchToProps(dispatch) {
     return {
         addPoint: bindActionCreators(routeEditorActions.addPoint, dispatch),
         updatePoint: bindActionCreators(routeEditorActions.updatePoint, dispatch),
-        deleteRoute: bindActionCreators(routeEditorActions.deleteRoute, dispatch)
+        deletePoint: bindActionCreators(routeEditorActions.deletePoint, dispatch)
     };
 }
 

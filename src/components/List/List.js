@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './List.css';
 import Button from '../Button/Button';
 
 
-export default class List extends Component {
+export default class List extends React.Component {
 
     _renderData = (item, index) => {
         return (
@@ -15,7 +15,7 @@ export default class List extends Component {
                 <div className="list_item__block">lat: {item.location.lat}</div>
                 <div className="list_item__block">lng: {item.location.lng}</div>
                 <Button title='DELETE'
-                    onClick={this.props.onClick}
+                    onClick={() => this.props.deletePoint(index)}
                 />
             </div>
         )

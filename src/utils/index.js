@@ -18,3 +18,9 @@ export const updateItemInArray = (array, action) => {
         };
     });
 }
+
+export const removeItem = (array, action) => {
+    let newArray = array.slice();
+    newArray.splice(action.payload.index, 1);
+    return newArray;
+}
