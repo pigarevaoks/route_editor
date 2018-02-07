@@ -1,38 +1,44 @@
 import React from 'react';
-import './List.css';
+import Dragula from 'react-dragula';
 import Button from '../Button/Button';
-
+import './List.css';
 
 export default class List extends React.Component {
 
     _renderData = (item, index) => {
         return (
             <div key={index} className="list_item">
-                <div className="list_item__address">
-                    {item.icon ? <img src={item.icon} alt="" className="list_item__icon"/> : null}
-                    <span className="list_item__index">{index + 1}</span>
-                    <span>{item.formatted_address}</span>
+                <div key={index} className="list_item__inner">
+                    <div className="list_item__row">
+                        {item.icon ? <img src={item.icon} alt="" className="list_item__icon"/> : null}
+                        <span className="list_item__index">{index + 1}</span>
+                        <span>{item.formatted_address}</span>
+                    </div>
+                    <div className="list_item__row">
+                        <span className="list_item__coord">lat: {item.location.lat}&nbsp;lng: {item.location.lng}</span>
+                    </div>
                 </div>
-                <div className="list_item__block">lat: {item.location.lat}</div>
-                <div className="list_item__block">lng: {item.location.lng}</div>
-                <Button title='DELETE'
-                    onClick={() => this.props.deletePoint(index)}
-                />
+                <Button title='DELETE' onClick={() => this.props.deletePoint(index)} />
             </div>
         )
     }
 
+    dragulaDecorator = (componentBackingInstance) => {
+        if (componentBackingInstance) {
+            let options = {};
+            Dragula([componentBackingInstance], options);
+        }
+    };
+
     render() {
         return (
-            <div>
+            <div ref={this.dragulaDecorator}>
                 {this.props.pointsList.length > 0 ?
                     this.props.pointsList.map((item, index) => {
                         return (
                             this._renderData(item, index)
                         );
-                    }) : 
-                    <span>Insert your point...</span>
-                }                   
+                    }) : null}                   
             </div>
         );
     }
