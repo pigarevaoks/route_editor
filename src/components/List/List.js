@@ -5,10 +5,10 @@ import './List.css';
 
 export default class List extends React.Component {
 
-    _renderData = (item, index) => {
+    _renderItem = (item, index) => {
         return (
-            <div key={index} className="list_item">
-                <div key={index} className="list_item__inner">
+            <div key={index} className="list_item" data-index={index}>
+                <div className="list_item__inner">
                     <div className="list_item__row">
                         <span className="list_item__index">{index + 1}</span>
                         <span>{item.formatted_address}</span>
@@ -24,14 +24,19 @@ export default class List extends React.Component {
 
     dragulaDecorator = (componentBackingInstance) => {
         if (componentBackingInstance) {
-            let options = {};
-            Dragula([componentBackingInstance], options);
+            const drake = Dragula([componentBackingInstance])
+            
+            drake.on('drop', (el, target, source, sibling) => {
+                drake.cancel(true)
+                let siblingIndex = sibling ? sibling.dataset.index : this.props.pointsList.length;
+                this.props.updatePointList(el.dataset.index, siblingIndex)
+            })
         }
     };
 
     render() {
         return (
-            <div ref={this.dragulaDecorator}>{this.props.pointsList.map(this._renderData)}</div>
+            <div ref={this.dragulaDecorator}>{this.props.pointsList.map(this._renderItem)}</div>
         );
     }
 }

@@ -14,3 +14,8 @@ export const deletePoint = index => ({
     type: allActions.DELETE_POINT,
     payload: { index }
 });
+
+export const updatePointList = (from, to) => ({
+    type: allActions.UPDATE_POINT_LIST,
+    payload: { from, to }
+});

@@ -15,6 +15,7 @@ class Container extends React.Component {
                     <SearchBox addPoint={this.props.addPoint}/>
                     <List pointsList={this.props.pointsList}
                           deletePoint={this.props.deletePoint} 
+                          updatePointList={this.props.updatePointList} 
                     />
                 </div>
                 <div className="container__col">
@@ -37,7 +38,8 @@ function mapDispatchToProps(dispatch) {
     return {
         addPoint: bindActionCreators(routeEditorActions.addPoint, dispatch),
         updatePoint: bindActionCreators(routeEditorActions.updatePoint, dispatch),
-        deletePoint: bindActionCreators(routeEditorActions.deletePoint, dispatch)
+        deletePoint: bindActionCreators(routeEditorActions.deletePoint, dispatch),
+        updatePointList: bindActionCreators(routeEditorActions.updatePointList, dispatch)
     };
 }
 

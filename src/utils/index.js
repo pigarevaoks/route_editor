@@ -25,3 +25,9 @@ export const removeItem = (array, action) => {
     newArray.splice(action.payload.index, 1);
     return newArray;
 }
+
+export const updatePositionInAray = (array, action) => {
+    let newArray = array.slice();
+    newArray.splice(action.payload.to, 0, newArray.splice(action.payload.from, 1)[0]);
+    return newArray;
+}

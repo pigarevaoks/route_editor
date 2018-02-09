@@ -19,7 +19,6 @@ export default class Map extends React.Component {
     }
     _onMouseVertical = (childKey, childProps, mouse) => {
         this.setState({ draggable: false });
-        console.log('childProps', childProps)
         this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng, childProps.marker.formatted_address)
     }
 
@@ -31,9 +30,7 @@ export default class Map extends React.Component {
         })
     }
 
-    _onChange = ({ center, zoom }) => {
-        this.setState({ center: center, zoom: zoom });
-    }
+    _onChange = ({ center, zoom }) => this.setState({ center: center, zoom: zoom });
 
     render() {
 
