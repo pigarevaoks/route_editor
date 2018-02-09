@@ -11,6 +11,7 @@ export const updateItemInArray = (array, action) => {
         }
         return {
             ...item,
+            formatted_address: action.payload.formatted_address,
             location: {
                 lat: action.payload.lat,
                 lng: action.payload.lng

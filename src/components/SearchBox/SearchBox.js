@@ -17,7 +17,6 @@ export default class SearchBox extends React.Component {
             let getPlaces = new Promise(resolve => resolve(this.searchBox.getPlaces()))
             getPlaces.then(places => 
                 this.props.addPoint({ 
-                    icon: places[0].icon,
                     name: places[0].name,
                     formatted_address: places[0].formatted_address,
                     location: {

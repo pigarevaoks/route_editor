@@ -10,7 +10,6 @@ export default class List extends React.Component {
             <div key={index} className="list_item">
                 <div key={index} className="list_item__inner">
                     <div className="list_item__row">
-                        {item.icon ? <img src={item.icon} alt="" className="list_item__icon"/> : null}
                         <span className="list_item__index">{index + 1}</span>
                         <span>{item.formatted_address}</span>
                     </div>
@@ -32,14 +31,7 @@ export default class List extends React.Component {
 
     render() {
         return (
-            <div ref={this.dragulaDecorator}>
-                {this.props.pointsList.length > 0 ?
-                    this.props.pointsList.map((item, index) => {
-                        return (
-                            this._renderData(item, index)
-                        );
-                    }) : null}                   
-            </div>
+            <div ref={this.dragulaDecorator}>{this.props.pointsList.map(this._renderData)}</div>
         );
     }
 }

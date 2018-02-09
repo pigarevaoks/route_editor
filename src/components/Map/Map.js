@@ -1,3 +1,4 @@
+/* global google */
 import React from 'react';
 import GoogleMap from 'google-map-react';
 import { GOOGLE_MAP_API_KEY } from '../../config'
@@ -18,11 +19,16 @@ export default class Map extends React.Component {
     }
     _onMouseVertical = (childKey, childProps, mouse) => {
         this.setState({ draggable: false });
-        this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng)
+        console.log('childProps', childProps)
+        this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng, childProps.marker.formatted_address)
     }
 
     _onMouseUp = (childKey, childProps, mouse) => {
         this.setState({ draggable: true });
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'location': { lat: mouse.lat, lng: mouse.lng }}, (results, status) => {
+            this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng, results[0].formatted_address)
+        })
     }
 
     _onChange = ({ center, zoom }) => {
@@ -30,6 +36,7 @@ export default class Map extends React.Component {
     }
 
     render() {
+
         const Markers = this.props.pointsList.map((marker, index) => (
             <Marker
                 key={index}
