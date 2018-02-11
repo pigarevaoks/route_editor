@@ -1,4 +1,4 @@
-import * as allActions from './allActions';
+import * as allActions from 'actions/allActions';
 
 export const addPoint = point => ({
     type: allActions.ADD_POINT,

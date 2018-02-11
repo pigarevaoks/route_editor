@@ -1,9 +1,9 @@
 /* global google */
 import React from 'react';
 import GoogleMap from 'google-map-react';
-import { GOOGLE_MAP_API_KEY } from '../../config'
-import Marker from '../Marker/Marker'
-import Polyline from '../Polyline/Polyline'
+import { GOOGLE_MAP_API_KEY } from 'config'
+import Marker from 'components/Marker/Marker'
+import Polyline from 'components/Polyline/Polyline'
 import './Map.css';
 
 export default class Map extends React.Component {

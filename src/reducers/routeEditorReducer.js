@@ -1,6 +1,6 @@
 import initialState from './initialState';
-import { ADD_POINT, UPDATE_POINT, DELETE_POINT, UPDATE_POINT_LIST } from '../actions/allActions';
-import { insertItem, updateItemInArray, removeItem, updatePositionInAray } from '../utils'
+import { ADD_POINT, UPDATE_POINT, DELETE_POINT, UPDATE_POINT_LIST } from 'actions/allActions';
+import { insertItem, updateItemInArray, removeItem, updatePositionInAray } from 'utils'
 
 export default function routeEditor(state = initialState, action) {
   switch (action.type) {

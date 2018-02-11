@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as routeEditorActions from '../../actions/routeEditorActions';
+import * as routeEditorActions from 'actions/routeEditorActions';
 import './Container.css';
-import SearchBox from '../SearchBox/SearchBox';
-import Map from '../Map/Map'
-import List from '../List/List'
+import SearchBox from 'components/SearchBox/SearchBox';
+import Map from 'components/Map/Map'
+import List from 'components/List/List'
 
 class Container extends React.Component {
     render() {
