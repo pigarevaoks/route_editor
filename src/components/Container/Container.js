@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as routeEditorActions from 'actions/routeEditorActions';
 import './Container.css';
-import SearchBox from 'components/SearchBox/SearchBox';
-import Map from 'components/Map/Map'
-import List from 'components/List/List'
+import SearchBox from 'components/SearchBox';
+import Map from 'components/Map';
+import List from 'components/List';
 
 class Container extends React.Component {
     render() {
