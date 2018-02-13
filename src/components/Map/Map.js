@@ -1,9 +1,9 @@
 /* global google */
 import React from 'react';
 import GoogleMap from 'google-map-react';
-import { GOOGLE_MAP_API_KEY } from 'config'
-import Marker from 'components/Marker'
-import Polyline from 'components/Polyline'
+import { GOOGLE_MAP_API_KEY } from 'config';
+import Marker from 'components/Marker';
+import Polyline from 'components/Polyline';
 import './Map.css';
 
 export default class Map extends React.Component {
@@ -14,19 +14,22 @@ export default class Map extends React.Component {
         this.state = {
             center: [59.938043, 30.337157],
             zoom: 7,
-            draggable: true,
+            draggable: true
         };
     }
+
     _onMouseVertical = (childKey, childProps, mouse) => {
         this.setState({ draggable: false });
-        this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng, childProps.marker.formatted_address)
+        this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng, childProps.marker.formatted_address);
     }
 
     _onMouseUp = (childKey, childProps, mouse) => {
         this.setState({ draggable: true });
         const geocoder = new google.maps.Geocoder();
         geocoder.geocode({ 'location': { lat: mouse.lat, lng: mouse.lng }}, (results, status) => {
-            this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng, results[0].formatted_address)
+            if (results !== null) {
+                this.props.updatePoint(parseInt(childKey), mouse.lat, mouse.lng, results[0].formatted_address);
+            }
         })
     }
 
@@ -51,7 +54,7 @@ export default class Map extends React.Component {
                     onChange={this._onChange}
                     center={this.state.center}
                     zoom={this.state.zoom}
-                    onChildMouseDown={this._onMouseVertical}
+                    onChildMouseDown ={this._onMouseVertical}
                     onChildMouseUp = {this._onMouseUp }
                     onChildMouseMove = {this._onMouseVertical}
                     bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}

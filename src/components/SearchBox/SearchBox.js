@@ -13,25 +13,24 @@ export default class SearchBox extends React.Component {
     }
 
     _handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            let getPlaces = new Promise(resolve => resolve(this.searchBox.getPlaces()))
-            getPlaces.then(places => 
-                this.props.addPoint({ 
-                    name: places[0].name,
-                    formatted_address: places[0].formatted_address,
-                    location: {
-                        lat: places[0].geometry.location.lat(),                        
-                        lng: places[0].geometry.location.lng()                        
-                    },
-                }))
-        }
+        if (e.key !== 'Enter') return false;
+        let getPlaces = new Promise(resolve => resolve(this.searchBox.getPlaces()));
+        getPlaces.then(places => {
+            this.props.addPoint({
+                formatted_address: places[0].formatted_address,
+                location: {
+                    lat: places[0].geometry.location.lat(),                        
+                    lng: places[0].geometry.location.lng()                        
+                },
+            })
+        })
     }
 
     render() {
         
         return <input type="text"
                       className="search_box" 
-                      ref={(input) => { this.textInput = input; }}  
+                      ref={(input) => { this.textInput = input }}  
                       onKeyPress={this._handleKeyPress} 
                 />;
     }

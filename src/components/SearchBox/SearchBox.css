@@ -6,6 +6,5 @@
     box-sizing: border-box;
     outline: none;
     margin-bottom: 20px;
-    border-width: 2px;
-    border-color: black
+    border: 2px solid #FFE5E1;
 }

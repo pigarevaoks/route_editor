@@ -1,26 +1,25 @@
-.list_item {
+.list__item {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
-    background-color: #bee9fa61;
+    background-color: #F2F2F2;
     padding: 10px;
     cursor: move;
+    border: 2px solid #FFE5E1;
+    box-sizing: border-box;
 }
 .list_item__inner {
-    flex: 1;
-    padding-right: 10px;
-}
-.list_item__row {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 5px;
+    flex: 1;
+    font: 14px/20px Arial, sans-serif;
 }
 .list_item__index {
     margin-right: 10px;
-    color: red;
+    font-weight: bold
 }
+
 .gu-mirror {
   position: fixed;
   margin: 0;
