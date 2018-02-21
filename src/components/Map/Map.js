@@ -8,15 +8,11 @@ import './Map.css';
 
 export default class Map extends React.Component {
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            center: [59.938043, 30.337157],
-            zoom: 7,
-            draggable: true
-        };
-    }
+    state = {
+        center: [59.938043, 30.337157],
+        zoom: 7,
+        draggable: true
+    };
 
     _onMouseVertical = (childKey, childProps, mouse) => {
         this.setState({ draggable: false });
@@ -36,8 +32,9 @@ export default class Map extends React.Component {
     _onChange = ({ center, zoom }) => this.setState({ center: center, zoom: zoom });
 
     render() {
+        const { pointsList } = this.props;
 
-        const Markers = this.props.pointsList.map((marker, index) => (
+        const Markers = pointsList.map((marker, index) => (
             <Marker
                 key={index}
                 text={index + 1}
@@ -63,7 +60,7 @@ export default class Map extends React.Component {
                 >
                     {Markers}
                 </GoogleMap>
-                {this.state.mapLoaded && <Polyline pointsList={this.props.pointsList} map={this.state.map} maps={this.state.maps} />}
+                {this.state.mapLoaded && <Polyline pointsList={pointsList} map={this.state.map} maps={this.state.maps} />}
             </div>
         );
     }

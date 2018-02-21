@@ -8,18 +8,20 @@ import './Main.css';
 
 class Main extends React.Component {
     render() {
+        const { pointsList, addPoint, deletePoint, updatePoint, updatePointList } = this.props;
+        
         return (
             <div className="container__inner">
                 <div className="container__col">
-                    <SearchBox addPoint={this.props.addPoint}/>
-                    <List pointsList={this.props.pointsList}
-                          deletePoint={this.props.deletePoint} 
-                          updatePointList={this.props.updatePointList} 
+                    <SearchBox addPoint={addPoint}/>
+                    <List pointsList={pointsList}
+                          deletePoint={deletePoint} 
+                          updatePointList={updatePointList} 
                     />
                 </div>
                 <div className="container__col">
-                    <Map pointsList={this.props.pointsList}
-                         updatePoint={this.props.updatePoint} />
+                    <Map pointsList={pointsList}
+                         updatePoint={updatePoint} />
                 </div>
             </div>
         )

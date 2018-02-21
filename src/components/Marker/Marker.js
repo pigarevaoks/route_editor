@@ -3,11 +3,7 @@ import './Marker.css';
 
 class Marker extends React.Component {
 
-    constructor(props) {
-        super(props)
-
-        this.state = { isShow: false };
-    }
+    state = { isShow: false };
 
     _calculateDelta = (curX, curY) => {
         return Math.abs(this.state.prevX - curX) + Math.abs(this.state.prevY - curY);
@@ -19,12 +15,13 @@ class Marker extends React.Component {
     }
 
     render() {
+        const { text, marker } = this.props;
         return (
             <div className="marker__container" onClick={this._onClick}>
-                <div className="marker__item">{this.props.text}</div>
+                <div className="marker__item">{text}</div>
                 {this.state.isShow &&
                 <div className="marker__balloon">
-                    {this.props.marker.formatted_address}
+                    {marker.formatted_address}
                 </div>}
             </div>
         );

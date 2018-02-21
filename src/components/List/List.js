@@ -30,8 +30,10 @@ export default class List extends React.Component {
     };
 
     render() {
+        const { pointsList } = this.props;
+        
         return (
-            <div ref={this.dragulaDecorator}>{this.props.pointsList.map(this._renderItem)}</div>
+            <div ref={this.dragulaDecorator}>{pointsList.map(this._renderItem)}</div>
         );
     }
 }
