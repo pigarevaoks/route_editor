@@ -16,6 +16,7 @@ export default class SearchBox extends React.Component {
         if (e.key !== 'Enter') return false;
         let getPlaces = new Promise(resolve => resolve(this.searchBox.getPlaces()));
         getPlaces.then(places => {
+            if (places === undefined || places.length === 0) return;
             this.props.addPoint({
                 formatted_address: places[0].formatted_address,
                 location: {
