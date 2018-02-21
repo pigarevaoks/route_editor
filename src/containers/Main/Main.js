@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as routeEditorActions from 'actions/routeEditorActions';
-import './Container.css';
+import { addPoint, updatePoint, deletePoint, updatePointList } from 'actions/routeEditorActions';
 import SearchBox from 'components/SearchBox';
 import Map from 'components/Map';
 import List from 'components/List';
+import './Main.css';
 
-class Container extends React.Component {
+class Main extends React.Component {
     render() {
         return (
             <div className="container__inner">
@@ -27,23 +26,15 @@ class Container extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
+export default connect(
+    state => ({
         deleted: state.routeEditor.deleted,
         pointsList: state.routeEditor.points
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        addPoint: bindActionCreators(routeEditorActions.addPoint, dispatch),
-        updatePoint: bindActionCreators(routeEditorActions.updatePoint, dispatch),
-        deletePoint: bindActionCreators(routeEditorActions.deletePoint, dispatch),
-        updatePointList: bindActionCreators(routeEditorActions.updatePointList, dispatch)
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Container);
+    }),
+    dispatch => ({
+        addPoint: point => dispatch(addPoint(point)),
+        updatePoint: (key, lat, lng, formatted_address) => dispatch(updatePoint(key, lat, lng, formatted_address)),
+        deletePoint: index => dispatch(deletePoint(index)),
+        updatePointList: (from, to) => dispatch(updatePointList(from, to)),
+    })
+)(Main);
