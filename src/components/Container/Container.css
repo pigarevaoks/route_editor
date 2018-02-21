@@ -1,12 +1,10 @@
 .container__inner {
   display: flex;
-  width: 1024px;
-  height: 100%;
+  flex: 1;
   align-items: flex-start;
   justify-content: space-between;
 }
 
 .container__col {
-  width: 48%;
-  height: 500px;
+  width: 49.5%;
 }

@@ -59,6 +59,7 @@ export default class Map extends React.Component {
                     onChildMouseMove = {this._onMouseVertical}
                     bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
                     onGoogleApiLoaded={({ map, maps }) => { this.setState({ map: map, maps: maps, mapLoaded: true }) }}
+                    yesIWantToUseGoogleMapApiInternals
                 >
                     {Markers}
                 </GoogleMap>
