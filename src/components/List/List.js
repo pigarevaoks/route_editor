@@ -1,6 +1,6 @@
 import React from 'react';
 import Dragula from 'react-dragula';
-import Button from 'components/Button';
+import { Button } from 'components';
 import './List.css';
 
 export default class List extends React.Component {

@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addPoint, updatePoint, deletePoint, updatePointList } from 'actions/routeEditorActions';
-import SearchBox from 'components/SearchBox';
-import Map from 'components/Map';
-import List from 'components/List';
+import { SearchBox, Map, List } from 'components';
 import './Main.css';
 
 class Main extends React.Component {
